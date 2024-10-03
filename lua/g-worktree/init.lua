@@ -10,12 +10,13 @@ local cwd = vim.loop.cwd()
 local function _resolve_wt_path(branch_name)
 	local stdout, status = Job:new({
 		command = "git",
-		args = { "rev-parse", "--git-dir" },
+		args = { "rev-parse", "--absolute-git-dir" },
 		cwd = cwd,
 	}):sync()
 
 	if status ~= 0 then
-		return nil
+		vim.print("Couldn't resolve directory!")
+		return
 	end
 
 	local git_dir_path = Path:new(stdout[1]):absolute()
