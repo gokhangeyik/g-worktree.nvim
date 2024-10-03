@@ -19,11 +19,11 @@ local function _resolve_wt_path(branch_name)
 		vim.print("Couldn't resolve directory!")
 		return
 	end
-  if stdout[0] ~= nil then
-    absolute_git_dir = stdout[0]
-
-  else
-    absolute_git_dir = stdout[1]
+	if stdout[0] ~= nil then
+		absolute_git_dir = stdout[0]
+	else
+		absolute_git_dir = stdout[1]
+	end
 	local git_dir_path = Path:new(absolute_git_dir):absolute()
 	local git_dir_name = string.match(git_dir_path, "([^/]+)/.git/?[^/]*")
 	local git_dir_base_path = string.match(git_dir_path, "(.+)/.git")
@@ -201,4 +201,3 @@ M.create_worktree = function(branch_name)
 end
 
 return M
-
