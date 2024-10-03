@@ -1,6 +1,6 @@
 ---@diagnostic disable: undefined-global
-local Job = require("plenary.Job")
-local Path = require("plenary.Path")
+local Job = require("plenary.job")
+local Path = require("plenary.path")
 
 local M = {}
 local cwd = vim.loop.cwd()
