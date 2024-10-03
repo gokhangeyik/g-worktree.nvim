@@ -35,7 +35,7 @@ end
 local function _is_bare_repo()
 	local _, status = Job:new({
 		command = "git",
-		args = { "status" },
+		args = { "rev-parse", "--is-bare-repository" },
 		cwd = cwd,
 	}):sync()
 
@@ -44,7 +44,7 @@ end
 local function _is_worktree()
 	local _, status = Job:new({
 		command = "git",
-		args = { "status" },
+		args = { "rev-parse", "--is-inside-work-tree" },
 		cwd = cwd,
 	}):sync()
 
