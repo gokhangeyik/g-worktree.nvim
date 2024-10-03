@@ -32,7 +32,16 @@ local function _resolve_wt_path(branch_name)
 	return final_path
 end
 
-local function _is_inside_git_repo()
+local function _is_bare_repo()
+	local _, status = Job:new({
+		command = "git",
+		args = { "status" },
+		cwd = cwd,
+	}):sync()
+
+	return status == 0
+end
+local function _is_worktree()
 	local _, status = Job:new({
 		command = "git",
 		args = { "status" },
@@ -163,9 +172,10 @@ M.switch_worktree = function(branch_name)
 end
 
 M.create_worktree = function(branch_name)
-	local is_inside_git_repo = _is_inside_git_repo()
+	local is_bare_repo = _is_bare_repo()
+	local is_worktree = _is_worktree()
 
-	if not is_inside_git_repo then
+	if not is_bare_repo and not is_worktree then
 		vim.print("not inside git repo")
 		return
 	end
