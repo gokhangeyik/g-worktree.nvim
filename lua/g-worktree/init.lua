@@ -19,7 +19,7 @@ local function _resolve_wt_path(branch_name)
 		return
 	end
 
-	vim.print(stdout)
+	vim.print(stdout[1])
 	local git_dir_path = Path:new(stdout[1]):absolute()
 	local git_dir_name = string.match(git_dir_path, "([^/]+)/.git/?[^/]*")
 	local git_dir_base_path = string.match(git_dir_path, "(.+)/.git")
