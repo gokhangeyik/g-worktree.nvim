@@ -4,7 +4,7 @@ local Path = require("plenary.path")
 
 local M = {}
 local cwd = vim.loop.cwd()
-local absolute_git_dir = ""
+local absolute_git_dir = {}
 
 -- resolve the path needed to create worktree in
 -- uses the pattern provided in setup to create path
